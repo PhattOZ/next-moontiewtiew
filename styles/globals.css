@@ -18,14 +18,3 @@ a {
 * {
   box-sizing: border-box;
 }
-
-/* Custom css */
-
-#menu {
-  width: 30px;
-  height: 30px;
-  background: url("../public/menu.png");
-  background-size: 30px;
-  background-repeat: no-repeat;
-  background-color: lightsalmon;
-}
