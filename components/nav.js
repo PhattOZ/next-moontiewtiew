@@ -9,8 +9,8 @@ export default function Nav() {
 
   return (
     <div
-      className={`flex justify-between items-center p-6 px-12 lg:px-16 w-full z-10 ${
-        router.pathname === "/" ? "absolute" : ""
+      className={`flex justify-between items-center p-6 px-12 lg:px-16 w-full z-10 text-white ${
+        router.pathname === "/" ? "absolute" : "bg-gray-900"
       }`}
     >
       <Link href="/">
@@ -24,14 +24,14 @@ export default function Nav() {
         onClick={() => {
           setMenuActive(!menuActive);
         }}
-      ></div>
+      />
 
       <div
         className={`${
           menuActive ? styles.navigationActive : "hidden lg:flex"
-        } gap-3 flex text-white`}
+        } gap-3 flex`}
       >
-        <Link href="/movies/topGrossing">
+        <Link href="/movies/populars">
           <a className="p-2 rounded-md bg-yellow-300 transition-colors duration-150">
             top grossing
           </a>
