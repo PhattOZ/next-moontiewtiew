@@ -2,7 +2,7 @@
   width: 22px;
   height: 22px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 100;
   color: white;
 }
 
@@ -19,12 +19,26 @@
 }
 
 .navigationActive {
+  z-index: inherit;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
+  background: rgb(255, 255, 255, 50%);
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.button {
+  @apply px-3 py-2 rounded-md uppercase;
+  color: #ff1178;
+}
+
+.button:hover {
+  background: #ff1178;
+  color: #050801;
+  box-shadow: 0 0 5px #ff1178, 0 0 25px #ff1178, 0 0 50px #ff1178,
+    0 0 200px #ff1178;
 }

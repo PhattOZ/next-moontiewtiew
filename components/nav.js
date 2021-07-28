@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
-import styles from "./layout.module.css";
+import styles from "./Nav.module.css";
 
 export default function Nav() {
   const [menuActive, setMenuActive] = useState(false);
@@ -9,9 +9,8 @@ export default function Nav() {
 
   return (
     <div
-      className={`flex justify-between items-center p-6 px-12 lg:px-16 w-full z-10 text-white ${
-        router.pathname === "/" ? "absolute" : "bg-gray-900"
-      }`}
+      className={`flex justify-between items-center p-6 px-12 lg:px-16 w-full z-10 text-white font-aleo 
+      ${router.pathname === "/" ? "absolute" : "bg-gray-900"}`}
     >
       <Link href="/">
         <a>back to home</a>
@@ -29,17 +28,13 @@ export default function Nav() {
       <div
         className={`${
           menuActive ? styles.navigationActive : "hidden lg:flex"
-        } gap-3 flex`}
+        } gap-3 flex items-center`}
       >
         <Link href="/movies/populars">
-          <a className="p-2 rounded-md bg-yellow-300 transition-colors duration-150">
-            top grossing
-          </a>
+          <a className={`${styles.button}`}>top grossing</a>
         </Link>
         <Link href="/">
-          <a className="p-2 rounded-md bg-red-600 transition-colors duration-150 uppercase">
-            Join now
-          </a>
+          <a className={``}>Join now</a>
         </Link>
       </div>
     </div>
