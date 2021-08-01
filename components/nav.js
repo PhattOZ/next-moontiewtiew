@@ -9,7 +9,7 @@ export default function Nav() {
 
   return (
     <div
-      className={`flex justify-between items-center p-6 px-12 lg:px-16 w-full z-10 text-white font-aleo 
+      className={`flex justify-between items-center p-6 px-12 lg:px-16 w-full z-10 text-white font-poppins font-semibold
       ${router.pathname === "/" ? "absolute" : "bg-gray-900"}`}
     >
       <Link href="/">
@@ -34,7 +34,7 @@ export default function Nav() {
           <a className={`${styles.button}`}>top grossing</a>
         </Link>
         <Link href="/">
-          <a className={``}>Join now</a>
+          <a className={`${styles.button}`}>Join now</a>
         </Link>
       </div>
     </div>

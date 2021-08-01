@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         aleo: "'Aleo', serif",
+        poppins: "'Poppins', sans-serif",
       },
     },
   },

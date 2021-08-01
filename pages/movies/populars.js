@@ -24,7 +24,7 @@ export default function Populars({ movies }) {
                 height={231}
               />
               <div className="px-3">
-                <div className="text-xl font-bold">{title}</div>
+                <div className="text-2xl font-bold tracking-wide">{title}</div>
                 <div className="text-xl">vote_average: {vote_average}</div>
               </div>
             </a>

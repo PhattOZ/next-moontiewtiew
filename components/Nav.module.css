@@ -33,12 +33,10 @@
 
 .button {
   @apply px-3 py-2 rounded-md uppercase;
-  color: #ff1178;
 }
 
 .button:hover {
-  background: #ff1178;
+  background: white;
   color: #050801;
-  box-shadow: 0 0 5px #ff1178, 0 0 25px #ff1178, 0 0 50px #ff1178,
-    0 0 200px #ff1178;
+  box-shadow: 0 0 5px white, 0 0 25px white, 0 0 50px white;
 }
