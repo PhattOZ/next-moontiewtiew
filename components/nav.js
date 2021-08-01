@@ -31,7 +31,7 @@ export default function Nav() {
         } gap-3 flex items-center`}
       >
         <Link href="/movies/populars">
-          <a className={`${styles.button}`}>top grossing</a>
+          <a className={`${styles.button}`}>Populars</a>
         </Link>
         <Link href="/">
           <a className={`${styles.button}`}>Join now</a>
