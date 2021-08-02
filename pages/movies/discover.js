@@ -1,9 +1,10 @@
-import { fetchPopulars } from "../../lib/movies";
+import { fetchTopRated } from "../../lib/movies";
 import Image from "next/image";
 import Link from "next/link";
+import SearchBar from "../../components/searchBar";
 
 export async function getStaticProps() {
-  const movies = await fetchPopulars();
+  const movies = await fetchTopRated();
   return {
     props: {
       movies,
@@ -11,9 +12,14 @@ export async function getStaticProps() {
   };
 }
 
-export default function Populars({ movies }) {
+export default function Discover({ movies }) {
   return (
-    <div className="pt-6 font-aleo">
+    <div className="pt-3 font-aleo">
+      <div className="uppercase text-3xl flex justify-center">
+        Discover the world of film
+      </div>
+      <SearchBar />
+
       {movies.map(({ id, vote_average, title, poster_path }) => (
         <div key={id}>
           <Link href={`${id}`}>

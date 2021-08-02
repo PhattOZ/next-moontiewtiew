@@ -30,8 +30,8 @@ export default function Nav() {
           menuActive ? styles.navigationActive : "hidden lg:flex"
         } gap-3 flex items-center`}
       >
-        <Link href="/movies/populars">
-          <a className={`${styles.button}`}>Populars</a>
+        <Link href="/movies/discover">
+          <a className={`${styles.button}`}>Discover</a>
         </Link>
         <Link href="/">
           <a className={`${styles.button}`}>Join now</a>

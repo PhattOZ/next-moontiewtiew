@@ -1,5 +1,6 @@
 import { fetchPopulars, getMovie } from "../../lib/movies";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export async function getStaticProps({ params }) {
   const movie = await getMovie(params.id);
@@ -16,11 +17,18 @@ export async function getStaticPaths() {
     return { params: { id: movie.id.toString() } };
   });
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export default function Movie({ movie }) {
   const image_BASE_URL = "https://image.tmdb.org/t/p/w1280";
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <div className="absolute w-full h-full flex justify-center">loading</div>
+    );
+  }
 
   return (
     <div className="h-screen relative font-aleo">
