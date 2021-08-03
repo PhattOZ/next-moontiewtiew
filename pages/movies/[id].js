@@ -1,4 +1,4 @@
-import { fetchPopulars, getMovie } from "../../lib/movies";
+import { fetchTopRated, getMovie } from "../../lib/tmdbAPI";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -11,7 +11,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const movies = await fetchPopulars();
+  const movies = await fetchTopRated();
 
   const paths = movies.map((movie) => {
     return { params: { id: movie.id.toString() } };
@@ -31,17 +31,22 @@ export default function Movie({ movie }) {
   }
 
   return (
-    <div className="h-screen relative font-aleo">
-      <Image
-        src={`${image_BASE_URL}${movie.backdrop_path}`}
-        layout="fill"
-        objectFit="cover"
-        objectPosition="right top"
-      />
-      <div className="absolute bg-gradient-to-r from-white to-transparent w-3/5 h-full flex flex-col justify-center">
-        <div className="text-4xl font-bold pb-12">{movie.title}</div>
-        <div className="w-2/3">{movie.overview}</div>
+    <>
+      <div className="h-screen relative">
+        <Image
+          src={`${image_BASE_URL}${movie.backdrop_path}`}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="right top"
+        />
+        <div className="absolute bg-gradient-to-r from-white to-transparent w-3/5 h-full flex flex-col justify-center px-3">
+          <div className="text-4xl font-semibold pb-12">{movie.title}</div>
+          <div className="w-2/3">{movie.overview}</div>
+        </div>
       </div>
-    </div>
+      <div>
+        <div className="border-b-2 border-black">review</div>
+      </div>
+    </>
   );
 }

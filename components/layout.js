@@ -10,7 +10,7 @@ export default function Layout({ children }) {
 
       <Nav />
 
-      {children}
+      <div className="font-poppins">{children}</div>
     </>
   );
 }
