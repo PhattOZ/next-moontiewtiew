@@ -1,24 +1,8 @@
 import { fetchTopRated, getMovie } from "../../lib/tmdbAPI";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
-export async function getStaticProps({ params }) {
-  const movie = await getMovie(params.id);
-
-  return {
-    props: { movie },
-  };
-}
-
-export async function getStaticPaths() {
-  const movies = await fetchTopRated();
-
-  const paths = movies.map((movie) => {
-    return { params: { id: movie.id.toString() } };
-  });
-
-  return { paths, fallback: true };
-}
+import dbConnect from "../../lib/reviews";
+import Reviews from "../../models/Review";
 
 export default function Movie({ movie }) {
   const image_BASE_URL = "https://image.tmdb.org/t/p/w1280";
@@ -49,4 +33,17 @@ export default function Movie({ movie }) {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps({ params }) {
+  await dbConnect();
+  const movie = await getMovie(params.id);
+
+  const reviews = await Reviews.find({});
+
+  console.log(reviews);
+
+  return {
+    props: { movie, reviews },
+  };
 }
