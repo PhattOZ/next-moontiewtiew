@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
-import { search } from "../lib/tmdbAPI";
+import { search } from "../../lib/tmdbAPI";
 
 const SEARCH_RES_SIZE = 5;
 
-export default function SearchBar() {
+export default function SearchBar(props) {
   const searchRef = useRef(null);
   const [active, setActive] = useState(false);
   const [results, setResults] = useState([]);
@@ -24,6 +24,7 @@ export default function SearchBar() {
   const onFocus = useCallback(() => {
     setActive(true);
     window.addEventListener("click", onClick);
+    window.addEventListener("search", props.onSearch);
   }, []);
 
   const onClick = useCallback((event) => {
@@ -31,25 +32,34 @@ export default function SearchBar() {
       setActive(false);
       window.removeEventListener("click", onClick);
     }
-  });
+  }, []);
 
   return (
     <div className="w-full px-3 lg:px-12 text-lg" ref={searchRef}>
-      <input
-        type="text"
-        placeholder="Search..."
-        className="p-2 w-full rounded-sm bg-gray-100 outline-none focus:ring-2 ring-indigo-500"
-        onChange={onChange}
-        onFocus={onFocus}
-      />
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          props.onSearch(event.target.searchBar.value);
+          setActive(false);
+        }}
+      >
+        <input
+          name="searchBar"
+          type="text"
+          placeholder="Search..."
+          className="p-2 px-3 w-full rounded-sm bg-gray-100 outline-none focus:ring-2 ring-indigo-500"
+          onChange={onChange}
+          onFocus={onFocus}
+        />
+      </form>
       <div className="relative">
         {active && results.length > 0 && (
           <ul className="absolute z-10 opacity-95 w-full bg-white">
             {results.map(({ id, title }) => (
-              <li key={id} className="border-b-2 p-2">
+              <li key={id} className="border-b-2 p-2 px-3 hover:bg-gray-100">
                 <Link href={`${id}`}>
                   <a>
-                    <div className="">{title}</div>
+                    <div>{title}</div>
                   </a>
                 </Link>
               </li>

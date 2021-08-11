@@ -4,19 +4,10 @@ import {
   BACKDROP_BASE_URL,
 } from "../../lib/tmdbAPI";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import dbConnect from "../../lib/reviews";
 import Reviews from "../../models/Review";
 
 export default function Movie({ movie, reviews }) {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return (
-      <div className="absolute w-full h-full flex justify-center">loading</div>
-    );
-  }
-
   return (
     <>
       <div className="h-screen relative">
@@ -55,6 +46,17 @@ export default function Movie({ movie, reviews }) {
         ) : (
           <div>Be the first to review!</div>
         )}
+      </div>
+      <div className="w-full px-6">
+        <form>
+          <div>Write</div>
+          <textarea
+            type="text"
+            className="w-full border-2 border-indigo-200 focus:border-indigo-500 outline-none rounded-md"
+            placeholder="Leave a review"
+            rows={4}
+          />
+        </form>
       </div>
     </>
   );
