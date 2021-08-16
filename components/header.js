@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
-import styles from "./Nav.module.css";
+import styles from "./Header.module.css";
 
-export default function Nav() {
+export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const router = useRouter();
 
@@ -30,11 +30,11 @@ export default function Nav() {
           menuActive ? styles.navigationActive : "hidden lg:flex"
         } gap-3 flex items-center`}
       >
-        <Link href="/movies/discover">
-          <a className={`${styles.button}`}>Discover</a>
+        <Link href="/movies/upcomings">
+          <a className={styles.button}>Discover</a>
         </Link>
         <Link href="/">
-          <a className={`${styles.button}`}>Join now</a>
+          <a className={styles.button}>Join now</a>
         </Link>
       </div>
     </div>

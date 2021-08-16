@@ -47,15 +47,19 @@ export default function Movie({ movie, reviews }) {
           <div>Be the first to review!</div>
         )}
       </div>
-      <div className="w-full px-6">
-        <form>
+      <div className="w-full px-6 ring-1">
+        <form className="border-2 border-yellow-400 p-1">
           <div>Write</div>
-          <textarea
-            type="text"
-            className="w-full border-2 border-indigo-200 focus:border-indigo-500 outline-none rounded-md"
-            placeholder="Leave a review"
-            rows={4}
-          />
+          <div className="h-4/5">
+            <textarea
+              type="text"
+              className="w-full border-2 border-indigo-200 focus:border-indigo-500 outline-none rounded-md p-1 px-2 min-h-full"
+              placeholder="Leave a review"
+              rows={5}
+              required
+            />
+          </div>
+          <input type="submit" value="Submit" />
         </form>
       </div>
     </>

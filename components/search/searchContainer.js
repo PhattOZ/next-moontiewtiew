@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { search } from "../../lib/tmdbAPI";
 
-export default function SearchContainer() {
+export default function SearchContainer({ movies }) {
   const [searchResult, setSearchResult] = useState([]);
 
   const handleOnSearch = async (keyword) => {
@@ -38,7 +38,7 @@ export default function SearchContainer() {
     <>
       <SearchBar onSearch={handleOnSearch} />
       <div className="">
-        {searchResult.length ? movieList(searchResult) : <div>no no no</div>}
+        {searchResult.length ? movieList(searchResult) : movieList(movies)}
       </div>
     </>
   );
