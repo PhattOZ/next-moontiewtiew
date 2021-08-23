@@ -4,8 +4,9 @@ import {
   BACKDROP_BASE_URL,
 } from "../../lib/tmdbAPI";
 import Image from "next/image";
-import dbConnect from "../../lib/reviews";
+import dbConnect from "../../lib/dbConnect";
 import Reviews from "../../models/Review";
+import ReviewForm from "../../components/reviewForm";
 
 export default function Movie({ movie, reviews }) {
   return (
@@ -38,9 +39,9 @@ export default function Movie({ movie, reviews }) {
       <div>
         {reviews !== [] ? (
           reviews.map((review) => (
-            <div key={review._id} className="p-3 border-2 shadow-lg">
-              <div className="font-semibold text-2xl">{review.account}</div>
-              <div>{review.comment}</div>
+            <div key={review.user_id} className="p-3 border-2 shadow-lg">
+              <div className="font-semibold text-2xl">{review.user_id}</div>
+              <div>{review.review}</div>
             </div>
           ))
         ) : (
@@ -48,19 +49,7 @@ export default function Movie({ movie, reviews }) {
         )}
       </div>
       <div className="w-full px-6 ring-1">
-        <form className="border-2 border-yellow-400 p-1">
-          <div>Write</div>
-          <div className="h-4/5">
-            <textarea
-              type="text"
-              className="w-full border-2 border-indigo-200 focus:border-indigo-500 outline-none rounded-md p-1 px-2 min-h-full"
-              placeholder="Leave a review"
-              rows={5}
-              required
-            />
-          </div>
-          <input type="submit" value="Submit" />
-        </form>
+        <ReviewForm />
       </div>
     </>
   );
@@ -70,13 +59,12 @@ export async function getServerSideProps({ params }) {
   await dbConnect();
   const movie = await getMovie(params.id);
 
-  const result = await Reviews.find({});
+  const result = await Reviews.findOne({ movie_id: params.id });
 
-  const reviews = result.map((doc) => {
-    const review = doc.toObject();
-    review._id = review._id.toString();
-    return review;
-  });
+  // Mongoose Models inherit from Documents, which have a toObject() method
+  // https://stackoverflow.com/questions/7503450/how-do-you-turn-a-mongoose-document-into-a-plain-object
+
+  const reviews = result.toObject().reviews;
 
   return {
     props: { movie, reviews },
