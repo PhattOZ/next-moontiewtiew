@@ -1,6 +1,8 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function ReviewForm({ movie_id }) {
+  const router = useRouter();
   const contentType = "application/json";
 
   const [form, setForm] = useState({
@@ -22,6 +24,8 @@ export default function ReviewForm({ movie_id }) {
       if (!res.ok) {
         throw new Error(res.status);
       }
+
+      router.reload();
     } catch (error) {
       console.error("failed to post a review");
     }
