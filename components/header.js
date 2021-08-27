@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./Header.module.css";
+import Image from "next/image";
 
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
@@ -9,11 +10,13 @@ export default function Header() {
 
   return (
     <div
-      className={`flex justify-between items-center p-6 px-12 lg:px-16 w-full z-10 text-white font-poppins font-semibold
-      ${router.pathname === "/" ? "absolute" : "bg-gray-900"}`}
+      className={`flex justify-between items-center p-2 px-12 lg:px-16 w-full z-10 text-white font-poppins font-semibold
+      ${router.pathname === "/" ? "absolute" : "bg-pink-200"}`}
     >
       <Link href="/">
-        <a>back to home</a>
+        <a>
+          <Image src="/logo.png" width={100} height={66} />
+        </a>
       </Link>
 
       <div
@@ -31,10 +34,24 @@ export default function Header() {
         } gap-3 flex items-center`}
       >
         <Link href="/movies/upcomings">
-          <a className={styles.button}>Discover</a>
+          <a
+            className={styles.button}
+            onClick={() => {
+              setMenuActive(false);
+            }}
+          >
+            Discover
+          </a>
         </Link>
         <Link href="/">
-          <a className={styles.button}>Join now</a>
+          <a
+            className={styles.button}
+            onClick={() => {
+              setMenuActive(false);
+            }}
+          >
+            Join now
+          </a>
         </Link>
       </div>
     </div>

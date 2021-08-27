@@ -37,9 +37,9 @@ export default function Movie({ movie, reviews }) {
         </div>
       </div>
       <div>
-        {reviews !== [] ? (
+        {reviews.length !== 0 ? (
           reviews.map((review) => (
-            <div key={review.user_id} className="p-3 border-2 shadow-lg">
+            <div key={review.user_id} className="p-3 border-2">
               <div className="font-semibold text-2xl">{review.user_id}</div>
               <div>{review.review}</div>
             </div>
@@ -49,7 +49,7 @@ export default function Movie({ movie, reviews }) {
         )}
       </div>
       <div className="w-full px-6 ring-1">
-        <ReviewForm />
+        <ReviewForm movie_id={movie.id} />
       </div>
     </>
   );
@@ -59,12 +59,12 @@ export async function getServerSideProps({ params }) {
   await dbConnect();
   const movie = await getMovie(params.id);
 
-  const result = await Reviews.findOne({ movie_id: params.id });
+  const result = await Reviews.findOne({ movie_id: params.id }, { _id: 0 });
 
   // Mongoose Models inherit from Documents, which have a toObject() method
   // https://stackoverflow.com/questions/7503450/how-do-you-turn-a-mongoose-document-into-a-plain-object
 
-  const reviews = result.toObject().reviews;
+  const reviews = result !== null ? result.toObject().reviews : [];
 
   return {
     props: { movie, reviews },
