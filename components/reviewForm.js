@@ -57,6 +57,7 @@ export default function ReviewForm({ movie_id }) {
             placeholder="user"
             onChange={handleChange}
             name="user_id"
+            autoComplete="off"
           />
           <textarea
             type="text"

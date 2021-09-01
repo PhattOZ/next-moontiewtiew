@@ -50,6 +50,7 @@ export default function SearchBar(props) {
           className="p-2 px-3 w-full rounded-sm bg-gray-100 outline-none focus:ring-2 ring-indigo-500"
           onChange={onChange}
           onFocus={onFocus}
+          autoComplete="off"
         />
       </form>
       <div className="relative">
