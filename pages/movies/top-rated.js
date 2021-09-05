@@ -13,13 +13,13 @@ export async function getStaticProps() {
 
 export default function TopRated({ movies }) {
   return (
-    <div className="flex">
+    <>
       <Sidebar />
 
       <div className="flex-grow pt-3">
         <div className="uppercase text-3xl flex justify-center">Top Rated</div>
         <SearchContainer movies={movies} />
       </div>
-    </div>
+    </>
   );
 }

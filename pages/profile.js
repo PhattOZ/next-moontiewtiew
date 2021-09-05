@@ -1,4 +1,25 @@
 import SideBar from "../components/sidebar";
+import { useSession, signIn, signOut } from "next-auth/client";
+
+const Content = () => {
+  const [session, loading] = useSession();
+
+  if (session) {
+    return (
+      <>
+        Signed in as {session.user}
+        <button onClick={signOut}>sign out</button>
+      </>
+    );
+  }
+
+  return (
+    <>
+      Sign in first
+      <button onClick={signIn}>sign in</button>
+    </>
+  );
+};
 
 export default function Profile() {
   return (
@@ -7,10 +28,7 @@ export default function Profile() {
 
       <div className="text-center flex justify-center">
         <div className="w-2/3">
-          some Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-          ab quam facilis corrupti nam, fugit, enim neque laboriosam nesciunt
-          ratione praesentium? Adipisci ratione nulla reiciendis hic enim! Quam,
-          tempore error?
+          <Content />
         </div>
       </div>
     </div>

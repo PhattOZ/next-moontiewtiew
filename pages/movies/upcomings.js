@@ -13,12 +13,12 @@ export async function getStaticProps() {
 
 export default function Upcomings({ movies }) {
   return (
-    <div className="flex">
+    <>
       <Sidebar />
       <div className="flex-grow pt-3">
         <div className="uppercase text-3xl flex justify-center">Upcomings</div>
         <SearchContainer movies={movies} />
       </div>
-    </div>
+    </>
   );
 }
