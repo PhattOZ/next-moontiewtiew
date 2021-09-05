@@ -4,33 +4,37 @@ import { useSession, signIn, signOut } from "next-auth/client";
 const Content = () => {
   const [session, loading] = useSession();
 
-  if (session) {
-    return (
-      <>
-        Signed in as {session.user}
-        <button onClick={signOut}>sign out</button>
-      </>
-    );
-  }
+  console.log(session);
+
+  // if (session) {
+  //   return (
+  //     <div>
+  //       <div>Signed in as {session.user}</div>
+  //       <button onClick={signOut} className="bg-blue-300">
+  //         sign out
+  //       </button>
+  //     </div>
+  //   );
+  // }
 
   return (
-    <>
-      Sign in first
-      <button onClick={signIn}>sign in</button>
-    </>
+    <div>
+      <div>Sign in first</div>
+      <button onClick={signIn} className="bg-blue-300">
+        sign in
+      </button>
+    </div>
   );
 };
 
 export default function Profile() {
   return (
-    <div className="flex items-center">
+    <>
       <SideBar />
 
-      <div className="text-center flex justify-center">
-        <div className="w-2/3">
-          <Content />
-        </div>
+      <div className="flex justify-center items-center flex-grow">
+        <Content />
       </div>
-    </div>
+    </>
   );
 }

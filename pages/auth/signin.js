@@ -1,6 +1,8 @@
 import { getProviders, signIn } from "next-auth/client";
 
 export default function SignIn({ providers }) {
+  const callbackURL = "/movies/upcomings";
+
   return (
     <div className="flex justify-center items-center flex-grow">
       <div>
@@ -9,7 +11,9 @@ export default function SignIn({ providers }) {
             key={provider.name}
             className="border-2 rounded-md text-center p-3 px-6 my-1 transform-gpu hover:-translate-y-0.5 cursor-pointer"
           >
-            <button onClick={() => signIn(provider.id)}>
+            <button
+              onClick={() => signIn(provider.id, { callbackUrl: callbackURL })}
+            >
               Sign in with {provider.name}
             </button>
           </div>
