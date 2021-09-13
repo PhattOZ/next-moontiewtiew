@@ -15,7 +15,7 @@ const CustomLink = ({ href, label }) => {
 export default function Sidebar() {
   return (
     <div className="w-1/6 bg-gray-200">
-      <ul className="py-4 overflow-hidden">
+      <ul className="p-2 overflow-hidden">
         <li className="py-2">
           <CustomLink href="/movies/upcomings" label="Upcoming" />
         </li>
