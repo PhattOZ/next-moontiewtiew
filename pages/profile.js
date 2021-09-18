@@ -5,8 +5,6 @@ import { useSession, signIn, signOut } from "next-auth/client";
 const Content = () => {
   const [session, loading] = useSession();
 
-  console.log(session);
-
   if (loading && !session) {
     return <div>loading...</div>;
   }
@@ -41,12 +39,12 @@ const Content = () => {
 
 export default function Profile() {
   return (
-    <>
+    <div className="flex">
       <SideBar />
 
       <div className="flex justify-center items-center flex-grow">
         <Content />
       </div>
-    </>
+    </div>
   );
 }

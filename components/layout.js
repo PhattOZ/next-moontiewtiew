@@ -10,7 +10,7 @@ export default function Layout({ children }) {
 
       <div className="min-h-screen flex flex-col">
         <Header />
-        <div className="font-poppins flex-grow flex">{children}</div>
+        <div className="font-poppins flex-grow">{children}</div>
       </div>
     </>
   );
