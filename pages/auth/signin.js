@@ -1,4 +1,4 @@
-import { getProviders, signIn } from "next-auth/client";
+import { getProviders, signIn } from "next-auth/react";
 
 const logo = (name) => {
   switch (name) {
@@ -59,8 +59,6 @@ export default function SignIn({ providers }) {
 
 export async function getServerSideProps(context) {
   const providers = await getProviders();
-
-  console.log(providers);
 
   return {
     props: { providers },

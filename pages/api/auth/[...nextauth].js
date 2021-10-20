@@ -1,13 +1,14 @@
 import NextAuth from "next-auth";
-import Providers from "next-auth/providers";
+import GithubProvider from "next-auth/providers/github";
+import FacebookProvider from "next-auth/providers/facebook";
 
 export default NextAuth({
   providers: [
-    Providers.GitHub({
+    GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
-    Providers.Facebook({
+    FacebookProvider({
       clientId: process.env.FACEBOOK_ID,
       clientSecret: process.env.FACEBOOK_SECERT,
     }),
@@ -15,5 +16,7 @@ export default NextAuth({
   pages: {
     signIn: "/auth/signin",
   },
-  database: process.env.MONGODB_URI,
+  jwt: {
+    secret: "somesecret",
+  },
 });

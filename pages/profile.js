@@ -1,9 +1,9 @@
 import SideBar from "../components/sidebar";
 import Image from "next/image";
-import { useSession, signIn, signOut } from "next-auth/client";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Content = () => {
-  const [session, loading] = useSession();
+  const { data: session, loading } = useSession();
 
   if (loading && !session) {
     return <div>loading...</div>;
