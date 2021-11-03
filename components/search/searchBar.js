@@ -1,8 +1,5 @@
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
-import { search } from "../../lib/tmdbAPI";
-
-const SEARCH_RES_SIZE = 5;
 
 export default function SearchBar(props) {
   const searchRef = useRef(null);
@@ -10,12 +7,12 @@ export default function SearchBar(props) {
   const [results, setResults] = useState([]);
 
   const onChange = useCallback(async (event) => {
-    const query = event.target.value;
+    const keyword = event.target.value;
 
-    if (query.length) {
-      const response = await search(query);
-      const results = response.results.slice(0, SEARCH_RES_SIZE);
-      setResults(results);
+    if (keyword.length) {
+      const response = await fetch("/api/search/" + keyword);
+      const search_results = await response.json();
+      setResults(search_results.data);
     } else {
       setResults([]);
     }
