@@ -32,8 +32,6 @@ const logo = (name) => {
 };
 
 export default function SignIn({ providers }) {
-  const callbackURL = "/movies/upcomings";
-
   return (
     <div className="flex justify-center items-center flex-grow">
       <div>
@@ -42,9 +40,7 @@ export default function SignIn({ providers }) {
             key={provider.name}
             className="flex items-center justify-center border-2 rounded-md text-center p-3 px-6 my-1 transform-gpu hover:-translate-y-0.5 cursor-pointer"
           >
-            <button
-              onClick={() => signIn(provider.id, { callbackUrl: callbackURL })}
-            >
+            <button onClick={() => signIn(provider.id)}>
               <div className="flex gap-x-2 items-center">
                 <div>{logo(provider.name)}</div>
                 <div>Sign in with {provider.name}</div>

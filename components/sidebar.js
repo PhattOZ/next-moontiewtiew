@@ -28,6 +28,9 @@ export default function Sidebar() {
         <li>
           <CustomLink href="/profile" label="Profileeeeeeeeeeeeeeeeeeeeee" />
         </li>
+        <li>
+          <CustomLink href="/upload" label="upload file" />
+        </li>
       </ul>
     </div>
   );

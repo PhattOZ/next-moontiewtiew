@@ -3,9 +3,9 @@ import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 const Content = () => {
-  const { data: session, loading } = useSession();
+  const { data: session, status } = useSession();
 
-  if (loading && !session) {
+  if (status === "loading") {
     return <div>loading...</div>;
   }
 
@@ -21,16 +21,17 @@ const Content = () => {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center absolute top-16 right-16">
       <Image
         src={session.user.image}
-        width={200}
-        height={200}
+        width={100}
+        height={100}
         className="rounded-full"
       />
 
       <div>Signed in as {session.user.name}</div>
-      <button onClick={signOut} className="bg-blue-300 p-1 rounded-sm">
+
+      <button onClick={signOut} className="bg-blue-300 p-1 rounded-sm mx-1">
         Sign out
       </button>
     </div>
@@ -42,7 +43,7 @@ export default function Profile() {
     <div className="flex">
       <SideBar />
 
-      <div className="flex justify-center items-center flex-grow">
+      <div className="flex flex-col justify-center items-center relative flex-grow">
         <Content />
       </div>
     </div>
