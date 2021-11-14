@@ -21,7 +21,7 @@ const Content = () => {
   }
 
   return (
-    <div className="text-center absolute top-16 right-16">
+    <div className="text-center">
       <Image
         src={session.user.image}
         width={100}
