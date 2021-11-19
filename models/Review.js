@@ -1,18 +1,15 @@
 import mongoose from "mongoose";
 
-const subschema = new mongoose.Schema(
-  {
-    user_id: {
-      type: String,
-      required: [true, "Account is required"],
-    },
-    review: {
-      type: String,
-      required: [true, "Comment cannot be empty"],
-    },
+const subschema = new mongoose.Schema({
+  user_id: {
+    type: String,
+    required: [true, "Account is required"],
   },
-  { _id: false }
-);
+  review: {
+    type: String,
+    required: [true, "Comment cannot be empty"],
+  },
+});
 
 const ReviewSchema = new mongoose.Schema({
   movie_id: {
